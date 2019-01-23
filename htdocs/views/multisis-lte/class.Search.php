@@ -64,6 +64,7 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 	} /* }}} */
 
 	function show() { /* {{{ */
+		$baseServer=$this->params['settings']->_httpRoot;
 		$dms = $this->params['dms'];
 		$user = $this->params['user'];
 		$fullsearch = $this->params['fullsearch'];
@@ -103,11 +104,11 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 
 		if($user->isAdmin())
 		{
-			$this->htmlStartPage("Buscador de documentos del índice IAIP", "skin-blue sidebar-mini sidebar-collapse");
+			$this->htmlStartPage("Buscador de documentos del índice IAIP", "skin-blue sidebar-mini sidebar-collapse",$baseServer);
 		}
 		else
 		{
-			$this->htmlStartPage("Buscador de documentos del índice IAIP","skin-blue layout-top-nav");
+			$this->htmlStartPage("Buscador de documentos del índice IAIP","skin-blue layout-top-nav",$baseServer);
 		}
 		$this->containerStart();
 		$this->mainHeader();		
@@ -119,7 +120,7 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 
 
 		echo '<ol class="breadcrumb">
-        <li><a href="../index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Buscador de documentos</li>
       </ol>';
 		echo "<div class=\"row\">";
@@ -140,7 +141,7 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 	</ul>
 	<div class="tab-content">
 	  <div class="tab-pane <?php echo ($fullsearch == false) ? 'active' : ''; ?>" id="database">
-<form action="../out/out.Search.php" name="form1">
+<form action="out/out.Search.php" name="form1">
 <?php
 // Database search Form {{{
 //$this->contentContainerStart();
@@ -440,7 +441,7 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 	  	echo "<div class=\"tab-pane ".(($fullsearch == true) ? 'active' : '')."\" id=\"fulltext\">\n";
 	$this->contentContainerStart();
 ?>
-<form action="../out/out.Search.php" name="form2" style="min-height: 330px;">
+<form action="out/out.Search.php" name="form2" style="min-height: 330px;">
 <input type="hidden" name="fullsearch" value="1" />
 <table class="table-condensed">
 <tr>
@@ -521,7 +522,7 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 
 			//print "<div class=\"alert\">".getMLText("search_report", array("doccount" => $totaldocs, "foldercount" => $totalfolders, 'searchtime'=>$searchTime))."</div>";
 			
-			$this->pageList($pageNumber, $totalpages, "../out/out.Search.php", $urlparams);
+			$this->pageList($pageNumber, $totalpages, "out/out.Search.php", $urlparams);
 //			$this->contentContainerStart();
 			$this->startBoxPrimary(getMLText("search_results"));
 			print "<table class=\"table table-condensed\">";
@@ -558,14 +559,14 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 						} else {
 							$docName = htmlspecialchars($document->getName());
 						}
-						print "<td><a class=\"standardText\" href=\"../out/out.ViewDocument.php?documentid=".$document->getID()."\">";
+						print "<td><a class=\"standardText\" href=\"out/out.ViewDocument.php?documentid=".$document->getID()."\">";
 						if($previewer->hasPreview($lc)) {
 							print "<img class=\"mimeicon\" width=\"".$previewwidth."\"src=\"../op/op.Preview.php?documentid=".$document->getID()."&version=".$lc->getVersion()."&width=".$previewwidth."\" title=\"".htmlspecialchars($lc->getMimeType())."\">";
 						} else {
 							print "<img class=\"mimeicon\" src=\"".$this->getMimeIcon($lc->getFileType())."\" title=\"".htmlspecialchars($lc->getMimeType())."\">";
 						}
 						print "</a></td>";
-						print "<td><a class=\"standardText\" href=\"../out/out.ViewDocument.php?documentid=".$document->getID()."\">/";
+						print "<td><a class=\"standardText\" href=\"out/out.ViewDocument.php?documentid=".$document->getID()."\">/";
 						$folder = $document->getFolder();
 						$path = $folder->getPath();
 						for ($i = 1; $i  < count($path); $i++) {
@@ -638,8 +639,8 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 						$folderName = htmlspecialchars($folder->getName());
 					}
 					print "<tr id=\"table-row-folder-".$folder->getID()."\" draggable=\"true\" rel=\"folder_".$folder->getID()."\" class=\"folder table-row-folder\" formtoken=\"".createFormKey('movefolder')."\">";
-					print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"".$this->imgpath."folder.png\" width=\"24\" height=\"24\" border=0></a></td>";
-					print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\">";
+					print "<td><a class=\"standardText\" href=\"out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"".$this->imgpath."folder.png\" width=\"24\" height=\"24\" border=0></a></td>";
+					print "<td><a class=\"standardText\" href=\"out/out.ViewFolder.php?folderid=".$folder->getID()."\">";
 					$path = $folder->getPath();
 					print "/";
 					for ($i = 1; $i  < count($path)-1; $i++) {

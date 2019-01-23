@@ -112,8 +112,9 @@ $(document).ready( function() {
 
 	function show() { /* {{{ */
 		$enableguestlogin = $this->params['enableguestlogin'];
+		$baseServer = $this->params['baseServer'];
 		$enablepasswordforgotten = $this->params['enablepasswordforgotten'];
-		$refer = "/out/out.ViewFolder.php?folderid=1&showtree=1";
+		$refer = $baseServer."out/out.ViewFolder.php?folderid=1&showtree=1";
 		$themes = $this->params['themes'];
 		$languages = $this->params['languages'];
 		$enableLanguageSelector = $this->params['enablelanguageselector'];
@@ -123,7 +124,7 @@ $(document).ready( function() {
 		$this->htmlAddHeader('<script type="text/javascript" src="../styles/'.$this->theme.'/validate/jquery.validate.js"></script>'."\n", 'js');
 		
 		$this->htmlStartPage(getMLText("sign_in"), "hold-transition login-page");
-	
+		
 		$this->startLoginContent();
 ?>
   
@@ -178,11 +179,8 @@ $(document).ready( function() {
     </div>
     <!-- /.col -->
   </div>
-  
-  
 </form>
 <?php
-	  print "<a href=\"../index.php\">ACCEDER AL PORTAL PRINCIPAL</a>\n"; 
 		$this->contentContainerEnd();
 		$tmpfoot = array();
 		if ($enableguestlogin)

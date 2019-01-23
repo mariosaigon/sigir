@@ -64,18 +64,18 @@ class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style
 		$timeout = $this->params['timeout'];
 		$id_numero_declaratoria = $this->params['id_numero_declaratoria'];
 		$id_fecha_clasificacion = $this->params['id_fecha_clasificacion'];
-
+    $baseServer = $this->params['baseServer'];
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
-		$ruta_pagina_salida="../out/out.CaducaranPronto.php";
+		$ruta_pagina_salida="out/out.CaducaranPronto.php";
 
 		if($user->isAdmin())
 		{
-			$this->htmlStartPage("reservas que están próximas a caducar", "skin-blue sidebar-mini sidebar-collapse");
+			$this->htmlStartPage("reservas que están próximas a caducar", "skin-blue sidebar-mini sidebar-collapse",$baseServer);
 		}
 		else
 		{
-			$this->htmlStartPage("reservas que están próximas a caducar", "skin-blue layout-top-nav");
+			$this->htmlStartPage("reservas que están próximas a caducar", "skin-blue layout-top-nav",$baseServer);
 		}
 		$this->containerStart();
 		$this->mainHeader();
@@ -91,7 +91,7 @@ class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style
         if(!$user->isAdmin() && !$user->isGuest())
         {
           echo '<ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php?folderid=16&showtree=1#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out/out.ViewFolder.php?folderid=16&showtree=1#"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Próximas caducidades</li>
       </ol>';  
         }
@@ -100,7 +100,7 @@ class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style
             if($user->isGuest())
             {
                 echo '<ol class="breadcrumb">
-        <li><a href="../index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Próximas caducidades</li>
       </ol>';
             }

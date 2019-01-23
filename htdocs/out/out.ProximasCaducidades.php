@@ -54,6 +54,7 @@ if($view) {
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
 	$view->setParam('id_numero_declaratoria', $id_numero_declaratoria);
+	$view->setParam('baseServer', $settings->_httpRoot);
 	$view->setParam('id_fecha_clasificacion', $id_fecha_clasificacion);
 	$view($_GET);
 	exit;

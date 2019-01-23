@@ -473,6 +473,7 @@ CAMBIADO: 12/09/17 JOSE MARIO LOPEZ LEIVA---- */
 		$previewwidth = $this->params['previewWidthList'];
 		$timeout = $this->params['timeout'];
 		$folderid = $folder->getId();
+		$baseServer=$this->params['settings']->_httpRoot;
 		$this->htmlAddHeader('<link href="../styles/'.$this->theme.'/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet">'."\n", 'css');
 		$this->htmlAddHeader('<script type="text/javascript" src="../styles/'.$this->theme.'/plugins/datatables/jquery.dataTables.min.js"></script>'."\n", 'js');
 		$this->htmlAddHeader('<script type="text/javascript" src="../styles/'.$this->theme.'/plugins/datatables/dataTables.bootstrap.min.js"></script>'."\n", 'js');
@@ -1466,7 +1467,7 @@ CAMBIADO: 12/09/17 JOSE MARIO LOPEZ LEIVA---- */
 				if(count($documents) > 0)
 				{
 					$iduser=getUserFromFolder($folder->getID());
-				echo "<a href=\"/out/out.GenerarDatoAbierto.php?idUser=$iduser\"<i class=\"fa fa-save\"></i>Descargar este índice de información reservada en formato CSV</a>";
+				echo "<a href=\"".$baseServer."out/out.GenerarDatoAbierto.php?idUser=$iduser\"<i class=\"fa fa-save\"></i>Descargar este índice de información reservada en formato CSV</a>";
 				}
 				print "<table id=\"viewfolder-table\" class=\"table table-hover table-striped table-condensed\">";
 				print "<thead>\n<tr>\n";

@@ -19,7 +19,7 @@
 
 include("inc/inc.Settings.php");
 
-header("Location: ". (isset($settings->_siteDefaultPage) && strlen($settings->_siteDefaultPage)>0 ? $settings->_siteDefaultPage : "/inicioPortal.php"));
+header("Location: ". (isset($settings->_siteDefaultPage) && strlen($settings->_siteDefaultPage)>0 ? $settings->_siteDefaultPage : $settings->_httpRoot."inicioPortal.php"));
 ?>
 <html>
 <head>

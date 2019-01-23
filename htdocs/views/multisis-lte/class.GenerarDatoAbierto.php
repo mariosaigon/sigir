@@ -63,7 +63,7 @@ class SeedDMS_View_GenerarDatoAbierto extends SeedDMS_Bootstrap_Style
 		$previewwidth = $this->params['previewWidthList'];
 		$timeout = $this->params['timeout'];
 		$idUser = $this->params['idUser'];
-	
+	    $baseServer=$this->params['settings']->_httpRoot;
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 		//$ruta_pagina_salida="../out/out.CaducaranPronto.php";
@@ -75,7 +75,7 @@ class SeedDMS_View_GenerarDatoAbierto extends SeedDMS_Bootstrap_Style
 		}
 		else
 		{
-			$this->htmlStartPage("Generar datos abiertos CSV", "skin-blue layout-top-nav");
+			$this->htmlStartPage("Generar datos abiertos CSV", "skin-blue layout-top-nav",$baseServer);
 		}
 		
 		$this->containerStart();
@@ -89,7 +89,7 @@ class SeedDMS_View_GenerarDatoAbierto extends SeedDMS_Bootstrap_Style
           
 		?>
 		 <ol class="breadcrumb">
-        <li><a href="../index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="index.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Generador de datos abiertos en CSV</li>
       </ol>
     <div class="gap-10"></div>
@@ -101,7 +101,7 @@ class SeedDMS_View_GenerarDatoAbierto extends SeedDMS_Bootstrap_Style
     //en este bloque php va "mi" código
   
  $this->startBoxPrimary("Presione el siguiente botón para generar un archivo CSV con todas sus reservas:");
- $accion="/generarCSVLight.php";
+ $accion=$baseServer."generarCSVLight.php";
 echo "<form action=\"".$accion."\" method=\"post\">";
 //$this->contentContainerStart();
 //////INICIO MI CODIGO
